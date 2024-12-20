@@ -1,15 +1,18 @@
 import React from 'react'
 import { FaRegUser } from "react-icons/fa";
 import './Duo.css'
-import duoIcon from '../../assets/duo-icon.png'
+import duoIcon from '../assets/duo-icon.png'
 import { MdOutlineCallEnd } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Duo = () => {
+
+  const { username } = useParams()
+
   return (
-    <Link to='mega' className='h-full w-full'>
-      <div className='duo-box pt-16 relative h-full flex flex-col justify-between pb-20'>
+    <Link to={`/${username}/mega`} className='h-full w-full '>
+      <div className='duo-box pt-16 relative h-full flex flex-col justify-between pb-20 z-20'>
 
         <img src={duoIcon} className=' w-10 absolute top-5 left-5' />
 

