@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import duoRing from '../assets/duoRing.mp3';
+import faceTimeRing from '../assets/FaceTime.mp3';
 import whatsAppRing from '../assets/whats-app-ring.m4a'
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -48,7 +49,7 @@ const Call = () => {
   return (
     <div className="calling-box">
       <audio ref={ringtoneRef} id="ringtone" loop src={
-        path == 'duo' ? duoRing : path == 'whatsapp' && whatsAppRing
+        path == 'duo' ? duoRing : path == 'whatsapp' ? whatsAppRing : path == 'facetime' && faceTimeRing
       }></audio>
     </div>
   );
