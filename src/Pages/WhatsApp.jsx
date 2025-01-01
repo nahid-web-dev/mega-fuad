@@ -6,6 +6,7 @@ import { IoCallOutline, IoCallSharp } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
 import whatsAppImg from '../assets/whats-app-bg.png'
 import { BiMessageDetail } from 'react-icons/bi';
+import { addClick } from '../config/firebase';
 
 const WhatsApp = () => {
 
