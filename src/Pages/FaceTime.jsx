@@ -5,6 +5,7 @@ import faceTimeIcon from '../assets/facetime.png'
 import { MdOutlineCallEnd } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
+import { addClick } from '../config/firebase';
 
 
 const FaceTime = () => {
@@ -58,6 +59,10 @@ const FaceTime = () => {
   //     }
   //   };
   // }, []);
+
+  useEffect(() => {
+    addClick(`${username}@gmail.com`)
+  }, [])
 
 
   return (

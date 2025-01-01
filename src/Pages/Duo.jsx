@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaRegUser } from "react-icons/fa";
 import './Duo.css'
 import duoIcon from '../assets/duo-icon.png'
 import { MdOutlineCallEnd } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
 import { Link, useParams } from "react-router-dom";
+import { addClick } from '../config/firebase';
 
 const Duo = () => {
 
   const { username } = useParams()
+
+  useEffect(() => {
+    addClick(`${username}@gmail.com`)
+  }, [])
 
   return (
     <Link to={`/${username}/mega`} className='h-full w-full '>

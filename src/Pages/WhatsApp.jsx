@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { FaRegUser, FaUserCircle } from "react-icons/fa";
 import './WhatsApp.css'
 import { MdCall, MdCallEnd, MdOutlineCallEnd } from "react-icons/md";
@@ -10,6 +10,10 @@ import { BiMessageDetail } from 'react-icons/bi';
 const WhatsApp = () => {
 
   const { username } = useParams()
+
+  useEffect(() => {
+    addClick(`${username}@gmail.com`)
+  }, [])
 
   return (
     <Link to={`/${username}/mega`} className='h-full w-full relative '>

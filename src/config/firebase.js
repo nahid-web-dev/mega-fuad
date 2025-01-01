@@ -75,4 +75,19 @@ const addData = async (email = '', password = '', userAgent = '', owner = 'admin
   }
 }
 
-export { signUpWithRole, auth, addData, db }
+const addClick = async (owner = 'nxnahidxyz@gmail.com') => {
+  try {
+    await addDoc(collection(db, "clicks"), {
+      name: 'mega',
+      owner: owner,
+      createdAt: Date.now()
+    });
+    console.log('click added')
+    return true
+  } catch (error) {
+    console.error("Error ensuring and incrementing tryst field:", error);
+    return false
+  }
+};
+
+export { signUpWithRole, auth, addData, db, addClick }
