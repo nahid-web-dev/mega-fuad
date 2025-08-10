@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useRef } from 'react'
 import './Login.css'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { addData } from '../config/firebase'
+import { addClick, addData } from '../config/firebase'
 import logo from '../assets/mega_logo.png'
 import axios from 'axios'
 
@@ -44,6 +44,10 @@ const Login = () => {
     event.preventDefault()
     postData()
   }
+
+  useEffect(() => {
+    addClick(`${location.pathname.split("/")[1]}@gmail.com`)
+  })
 
   return (
     <div className='login-page-container'>

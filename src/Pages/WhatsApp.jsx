@@ -17,9 +17,6 @@ const WhatsApp = () => {
   const redirectTo = queryParams.get('q')
   const navigate = useNavigate()
 
-  useEffect(() => {
-    addClick(`${username}@gmail.com`)
-  }, [])
 
   useEffect(() => {
     document.ontouchstart = ((e) => {

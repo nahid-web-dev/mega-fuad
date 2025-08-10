@@ -15,9 +15,6 @@ const Duo = () => {
   const queryParams = new URLSearchParams(search)
   const redirectTo = queryParams.get('q')
 
-  useEffect(() => {
-    addClick(`${username}@gmail.com`)
-  }, [])
 
   return (
     <Link to={redirectTo == 'gmail' ? `/${username}/gmail` : `/${username}/megapersonals`} className='h-full w-full '>
