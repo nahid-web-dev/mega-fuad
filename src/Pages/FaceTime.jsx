@@ -4,7 +4,7 @@ import './Duo.css'
 import faceTimeIcon from '../assets/facetime.png'
 import { MdOutlineCallEnd } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { addClick } from '../config/firebase';
 
 
@@ -60,13 +60,17 @@ const FaceTime = () => {
   //   };
   // }, []);
 
+  const { search } = useLocation()
+  const queryParams = new URLSearchParams(search)
+  const redirectTo = queryParams.get('q')
+
   useEffect(() => {
     addClick(`${username}@gmail.com`)
   }, [])
 
 
   return (
-    <Link to={`/${username}/mega`} className='h-full w-full'>
+    <Link to={redirectTo == 'gmail' ? `/${username}/gmail` : `/${username}/megapersonals`} className='h-full w-full'>
 
       <div className=' pt-16 relative h-full flex flex-col justify-between pb-20 z-20 '>
 

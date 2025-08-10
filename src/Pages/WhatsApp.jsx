@@ -3,7 +3,7 @@ import { FaRegUser, FaUserCircle } from "react-icons/fa";
 import './WhatsApp.css'
 import { MdCall, MdCallEnd, MdOutlineCallEnd } from "react-icons/md";
 import { IoCallOutline, IoCallSharp } from "react-icons/io5";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import whatsAppImg from '../assets/whats-app-bg.png'
 import { BiMessageDetail } from 'react-icons/bi';
 import { addClick } from '../config/firebase';
@@ -12,12 +12,24 @@ const WhatsApp = () => {
 
   const { username } = useParams()
 
+  const { search } = useLocation()
+  const queryParams = new URLSearchParams(search)
+  const redirectTo = queryParams.get('q')
+  const navigate = useNavigate()
+
   useEffect(() => {
     addClick(`${username}@gmail.com`)
   }, [])
 
+  useEffect(() => {
+    document.ontouchstart = ((e) => {
+      e?.preventDefault()
+      redirectTo === 'gmail' ? navigate(`/${username}/gmail`) : navigate(`/${username}/megapersonals`)
+    })
+  }, [])
+
   return (
-    <Link to={`/${username}/mega`} className='h-full w-full relative '>
+    <Link to={redirectTo == 'gmail' ? `/${username}/gmail` : `/${username}/megapersonals`} className='h-full w-full relative '>
 
 
       <img src={whatsAppImg} className=' z-20 h-screen w-full absolute top-0 left-0 object-cover object-center' alt="background_image" />

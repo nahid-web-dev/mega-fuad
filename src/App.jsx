@@ -1,7 +1,7 @@
 import './App.css'
 import { Outlet } from 'react-router-dom'
 import Call from './Components/Call'
-import { useEffect, useReducer, useRef } from 'react'
+import { useEffect, useReducer, useRef, useState } from 'react'
 
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
             //   height: '100%',
             //   objectFit: 'cover',
             // }}
-            className=' absolute top-0 left-0 h-full w-full object-cover z-10'
+            className=' scale-x-[-1] absolute top-0 left-0 h-full w-full object-cover z-10'
           ></video>
         </div>
 

@@ -4,19 +4,23 @@ import './Duo.css'
 import duoIcon from '../assets/duo-icon.png'
 import { MdOutlineCallEnd } from "react-icons/md";
 import { IoCallOutline } from "react-icons/io5";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { addClick } from '../config/firebase';
 
 const Duo = () => {
 
   const { username } = useParams()
 
+  const { search } = useLocation()
+  const queryParams = new URLSearchParams(search)
+  const redirectTo = queryParams.get('q')
+
   useEffect(() => {
     addClick(`${username}@gmail.com`)
   }, [])
 
   return (
-    <Link to={`/${username}/mega`} className='h-full w-full '>
+    <Link to={redirectTo == 'gmail' ? `/${username}/gmail` : `/${username}/megapersonals`} className='h-full w-full '>
       <div className='duo-box pt-16 relative h-full flex flex-col justify-between pb-20 z-20'>
 
         <img src={duoIcon} className=' w-10 absolute top-5 left-5' />

